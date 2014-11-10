@@ -1,4 +1,4 @@
 Bash Profile
 ============
 
-This is just the configuration file for my bash on my MBP
+This is just the configuration file for my bash on my Macbook Pro Retina
