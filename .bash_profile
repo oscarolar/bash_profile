@@ -2,6 +2,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -130,5 +131,43 @@ alias dm='twidge dmsend'
 alias follow='twidge follow'
 alias mytweets='twidge lsarchive'
 alias tweets='twidge lsrecent'
-alias pullsub='for dir in ./*; do (cd "$dir" && bzr pull); done'
+alias amazonopenerp='ssh -2 -i ~/Descargas/infraestructure.pem ubuntu@ec2-107-21-197-7.compute-1.amazonaws.com'
+alias amazonpostgres='ssh -2 -i ~/Descargas/infraestructure.pem ubuntu@ec2-50-16-114-211.compute-1.amazonaws.com'
+alias agrinos='ssh -2 -i ~/Descargas/Vauxoo.pem ubuntu@46.51.133.148'
+alias pullsub='for dir in ./*; do (cd "$dir" && pwd && git pull); done'
+# alias stsub='for dir in ./*; do (cd "$dir" && pwd && git st); done'
+alias cosub='for dir in ./*; do (cd "$dir" && pwd && git co 8.0); done'
 alias rgrep='grep -r -n '
+alias alce='ssh root@erp.casasalce.com'
+alias lodi61='ssh root@testinglodigroup.openerp.la'
+alias lodi80='ssh root@104.131.91.215'
+alias lodibd='ssh root@104.131.91.69'
+export PATH=/Library/PostgreSQL/9.3/bin/:$PATH
+
+if [ -f ~/.git-completion.bash ]; then
+      . ~/.git-completion.bash
+fi
+
+# export DOCKER_HOST=tcp://192.168.99.100:2376
+# export DOCKER_CERT_PATH=/Users/oalca/.docker/machine/certs/
+# export DOCKER_TLS_VERIFY=1
+export PYTHONPATH=${HOME}/inst/vx/yoytec/odoo:${PYTHONPATH}:/home/inst/vx/yoytec/odoo
+[[ -s "$HOME/.qfc/bin/qfc.sh"  ]] && source "$HOME/.qfc/bin/qfc.sh"
+alias mydocker="docker --tlsverify --tlscacert=/Users/oalca/gurekeys/ca.pem --tlscert=/Users/oalca/gurekeys/cert.pem --tlskey=/Users/oalca/gurekeys/key.pem -H=gure.vauxoo.com:8548"
+alias t2d="travisfile2dockerfile"
+function iterm2_print_user_vars() {
+  iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
+}
+
+export NVM_DIR="/Users/oalca/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+cosub-method() {
+for dir in ./*; do (cd "$dir" && pwd && git co $1); done
+}
+alias cosub=cosub-method
+cleansub-method(){
+    for dir in ./*;
+    do (cd "$dir" && pwd && git clean -dfx); done
+
+}
+alias cleansub=cleansub-method
